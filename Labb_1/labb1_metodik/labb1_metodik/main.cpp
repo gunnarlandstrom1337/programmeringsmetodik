@@ -1,5 +1,6 @@
 #include "int_buffer.h"
 #include "int_sorted.h"
+#include "main.h"
 
 void print_buffer(int_buffer buf) {
 	for (const int* i = buf.begin(); i !=

@@ -15,24 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="int_sorted.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="int_buffer.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="person.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="student.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="teacher.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="int_sorted.h">
+    <ClInclude Include="person.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="int_buffer.h">
+    <ClInclude Include="student.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
+    <ClInclude Include="teacher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
