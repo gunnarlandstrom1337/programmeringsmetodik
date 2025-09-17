@@ -15,15 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="int_buffer.cpp">
+    <ClCompile Include="..\int_buffer.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="..\main.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="int_sorted.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="int_buffer.h">
+    <ClInclude Include="..\int_buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="int_sorted.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
