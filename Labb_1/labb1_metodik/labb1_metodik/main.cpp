@@ -1,6 +1,5 @@
 #include "int_buffer.h"
 #include "int_sorted.h"
-#include "main.h"
 
 void print_buffer(int_buffer buf) {
 	for (const int* i = buf.begin(); i !=
@@ -47,6 +46,22 @@ int main()
 
 	int_buffer buf2 = f(buf1);
 	buf2 = f(buf1);
+
+	std::cout << "\n" << "SORTED STARTS HERE" << "\n" << "\n";
+	
+	int_sorted sortedbuf(buf2.begin(), buf2.size());
+
+
+	for (int i = 0; i < 10; i++) {
+		sortedbuf.insert(rand() % 1000);
+	}
+	sortedbuf.insert(32);
+
+
+	for (const int* i = sortedbuf.begin(); i !=
+		sortedbuf.end(); i++) {
+		std::cout << *i << ", ";
+	}
 
 
 	return 0;

@@ -16,7 +16,7 @@ void dynbuffer::push_back(int e)
 	}
 
 	std::copy(data.begin(), data.end(), new_data.begin());
-	new.data.back() = e;
+	new_data.back() = e;
 
 	data = std::move(new_data); //väljer konstruerare
 }

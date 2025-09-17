@@ -13,6 +13,10 @@ public:
 	const int* end() const;
 	size_t size() const;
 	size_t capacity() const;
+	
+	
+	void resize():
+
 
 	void push_back(int e);
 	int& front();

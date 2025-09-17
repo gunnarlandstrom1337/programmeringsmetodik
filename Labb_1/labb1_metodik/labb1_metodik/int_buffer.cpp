@@ -30,7 +30,7 @@ int_buffer& int_buffer::operator =(const int_buffer& rhs) {
 }
 
 // move assign
-int_buffer& int_buffer::operator=(int_buffer&& rhs) {
+int_buffer& int_buffer::operator=(int_buffer&& rhs) noexcept {
 	swap(rhs);
 	return *this;
 }
