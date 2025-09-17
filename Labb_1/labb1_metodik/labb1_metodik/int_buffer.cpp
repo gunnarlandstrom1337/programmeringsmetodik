@@ -6,6 +6,7 @@ int_buffer::~int_buffer() {
 
 // Denna konstruktorn anropas av första funktionen
 int_buffer::int_buffer(size_t size) :first(new int[size]), last(first + size) {
+
 }
 
 int_buffer::int_buffer(const int* source, size_t size) :int_buffer(size) {
@@ -63,5 +64,4 @@ const int* int_buffer::end() const {
 void int_buffer::swap(int_buffer& rhs) {
 	std::swap(rhs.first, first);
 	std::swap(rhs.last, last);
-
 }

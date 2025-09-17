@@ -52,7 +52,7 @@ int main()
 	int_sorted sortedbuf(buf2.begin(), buf2.size());
 
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 400; i++) {
 		sortedbuf.insert(rand() % 1000);
 	}
 	sortedbuf.insert(32);

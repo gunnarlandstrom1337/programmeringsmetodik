@@ -22,7 +22,6 @@ public:
 	void swap(int_buffer& rhs);
 	~int_buffer();
 
-
 private:
 	int* first = nullptr;
 	int* last = nullptr;

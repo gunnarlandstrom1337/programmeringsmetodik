@@ -10,7 +10,6 @@ int_sorted::int_sorted(const int* source, size_t size)
 		*k = *i;
 		k++;
 	}
-
 }
 
 size_t int_sorted::size() const
@@ -34,8 +33,6 @@ void int_sorted::insert(int value)
 		i++;
 	}
 	*(j-1) = value;
-
-
 	buf = std::move(insertValue); //Läs om move
 }
 
