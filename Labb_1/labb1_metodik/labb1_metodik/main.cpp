@@ -48,20 +48,71 @@ int main()
 	buf2 = f(buf1);
 
 	std::cout << "\n" << "SORTED STARTS HERE" << "\n" << "\n";
-	
+
 	int_sorted sortedbuf(buf2.begin(), buf2.size());
+	int_sorted sortedbuf2(buf1.begin(), buf1.size());
 
-
-	for (int i = 0; i < 400; i++) {
-		sortedbuf.insert(rand() % 1000);
+	/*
+	for (int i = 0; i < 500; i++) {
+		sortedbuf.insert(rand() % 10000);
 	}
-	sortedbuf.insert(32);
+	//sortedbuf.insert(32);
 
-
+	std::cout << "\n\nTHIS IS 1ST SORTED BUFFER: \n";
 	for (const int* i = sortedbuf.begin(); i !=
 		sortedbuf.end(); i++) {
 		std::cout << *i << ", ";
 	}
+
+
+	*/
+	int_buffer buf3(0);
+	int_sorted sortedbuf3(buf3.begin(), buf3.size());
+	for (int i = 0; i != 40000; i++) {
+		sortedbuf3.insert(rand() % 1000);
+	}
+
+	/*
+	std::cout << "\n\nTHIS IS 2ND SORTED BUFFER: \n";
+	for (const int* i = sortedbuf2.begin(); i !=
+		sortedbuf2.end(); i++) {
+		std::cout << *i << ", ";
+	}
+
+	sortedbuf = sortedbuf.merge(sortedbuf2);
+
+	int_sorted sortedbuf3;
+	std::cout << "\n\nTHIS IS 3RD SORTED BUFFER: \n";
+	for (const int* i = sortedbuf3.begin(); i !=
+		sortedbuf3.end(); i++) {
+		std::cout << *i << ", ";
+	}
+
+	sortedbuf = sortedbuf.merge(sortedbuf3);
+
+
+	std::cout << "\n\nTHIS IS MERGED BUFFER: \n";
+	for (const int* i = sortedbuf.begin(); i !=
+		sortedbuf.end(); i++) {
+		std::cout << *i << ", ";
+	}
+
+	int_buffer scrambleBuffer(4000);
+
+	std::cout << "\n\nTHIS IS SCRAMBLED BUFFER: \n";
+	for (int* i = scrambleBuffer.begin(); i != scrambleBuffer.end(); i++) {
+		int k = rand() % 10000;
+			*i = k;
+	}
+
+
+	int_sorted sortedBuffer(scrambleBuffer.begin(), scrambleBuffer.size());
+
+	for (const int* i = sortedBuffer.begin(); i !=
+		sortedBuffer.end(); i++) {
+		std::cout << *i << ", ";
+	}
+	*/
 
 
 	return 0;
