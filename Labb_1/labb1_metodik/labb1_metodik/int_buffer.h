@@ -6,7 +6,7 @@
 class int_buffer {
 public:
 	int_buffer() = default;
-	explicit int_buffer(size_t size); // size_t is defined in cstdlib
+	explicit int_buffer(size_t size); // läs på explicit
 	int_buffer(const int* source, size_t size);
 	int_buffer(const int_buffer& rhs); // copy construct
 	int_buffer(int_buffer&& rhs) noexcept; // move construct
