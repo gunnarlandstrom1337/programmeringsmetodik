@@ -171,23 +171,13 @@ void selectionSort(int_buffer& buffer) {
 
 	for (int i = 0; i < n; ++i) {
 
-		// Assume the current position holds
-		// the minimum element
 		int min_idx = i;
 
-		// Iterate through the unsorted portion
-		// to find the actual minimum
 		for (int j = i + 1; j < n; ++j) {
 			if (buffer[j] < buffer[min_idx]) {
-
-				// Update min_idx if a smaller
-				// element is found
 				min_idx = j;
 			}
 		}
-
-		// Move minimum element to its
-		// correct position
 		std::swap(buffer[i], buffer[min_idx]);
 	}
 }
