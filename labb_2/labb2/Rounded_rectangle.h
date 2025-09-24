@@ -6,7 +6,7 @@ class Rounded_rectangle : public Rectangle
 {
 public:
 	Rounded_rectangle(double length, double width, std::string color = "");
-	double getArea() const { return; }
+	double get_area() const override { return; }
 };
 
 #endif

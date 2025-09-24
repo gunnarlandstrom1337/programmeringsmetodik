@@ -6,7 +6,7 @@ class Circle : public Shape
 {
 public:
 	Circle(double radius, std::string color = "");
-	virtual double getArea() const { return radius*radius*pi; }
+	double get_area() const override { return radius*radius*pi; }
 protected:
 	double pi = 3.141592653;
 	double radius;

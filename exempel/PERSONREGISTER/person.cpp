@@ -2,7 +2,6 @@
 
 person::person(std::string name, std::string login): name(name), login(login)
 {
-
 }
 
 std::string person::get_email() const

@@ -2,17 +2,11 @@
 #define TEACHER_H
 #include "person.h"
 
-class teacher : public person
+class teacher : public virtual person
 {
-
 public:
 	teacher(std::string name, std::string login);
-
-private:
-	std::string name;
-	std::string login;
-
-
+	std::string get_email() const override;
 
 };
 

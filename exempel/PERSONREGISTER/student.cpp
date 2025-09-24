@@ -1,10 +1,7 @@
 #include "student.h"
-#include <string>
 
-student::student(std::string name, std::string login): name(name), login(login)
+student::student(std::string name, std::string login) :person(name, login)
 {
-
-
 
 }
 

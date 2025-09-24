@@ -7,7 +7,7 @@ class Rectangle : public Shape
 {
 public:
 	Rectangle(double length, double width, std::string color);
-	virtual double getArea() const { return length * width; }
+	double get_area() const override { return length * width; }
 protected:
 	double length;
 	double width;

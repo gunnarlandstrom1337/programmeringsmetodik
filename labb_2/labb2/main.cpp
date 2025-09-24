@@ -16,7 +16,7 @@ int main() {
 	Circle circle(5, "blue");
 	Rounded_rectangle(5, 5, "teal");
 	Parallelepiped(5, 5, 5, "orange");
-	Cylinnder(5, 5, "yellow");
+	Cylinder(5, 5, "yellow");
 
 
 
@@ -30,5 +30,5 @@ void get_data(std::vector<Shape> myVec) {
 	// F ¨o r varje objekt :
 	// - Skriv ut objektets f ¨a rg och skriv ut arean .
 	// Till sist skriver du ut den totala arean av
-	samtliga objekt .
+	//samtliga objekt .
 }

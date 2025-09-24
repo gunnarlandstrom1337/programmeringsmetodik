@@ -6,7 +6,7 @@ class Cylinder : public Circle
 {
 public:
 	Cylinder(double radius,double height, std::string color);
-	double getVolume() const { return radius * radius * pi * height; }
+	double get_area() const override { return radius * radius * pi * height; }
 private:
 	double height;
 };
