@@ -1,4 +1,5 @@
 #include "shape.h"
+#include "Rectangle.h"
 
 Shape::Shape(std::string color) : color(color)
 {
