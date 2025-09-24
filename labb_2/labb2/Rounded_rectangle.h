@@ -1,6 +1,6 @@
 #ifndef ROUNDED_RECTANGLE_H
 #define ROUNDED_RECTANGLE_H
-#include "rectangle.h"
+#include "Rectangle.h"
 
 class Rounded_rectangle : public Rectangle
 {

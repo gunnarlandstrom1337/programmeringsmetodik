@@ -1,6 +1,6 @@
 #ifndef PARALLELEPIPED_H
 #define PARALLELEPIPED_H
-#include "rectangle.h"
+#include "Rectangle.h"
 
 class Parallelepiped : public Rectangle
 {

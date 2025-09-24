@@ -5,7 +5,7 @@
 class Shape {
 public:
 	Shape(std::string color);
-	virtual double get_area() = 0;
+	virtual double get_area()const = 0;
 	std::string get_color();
 protected:
 	std::string color;

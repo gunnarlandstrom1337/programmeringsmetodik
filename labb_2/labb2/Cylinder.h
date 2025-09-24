@@ -1,6 +1,6 @@
 #ifndef CYLINDER_H
 #define CYLINDER_H
-#include "circle.h"
+#include "Circle.h"
 
 class Cylinder : public Circle
 {
