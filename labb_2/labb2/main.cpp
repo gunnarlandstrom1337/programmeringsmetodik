@@ -14,9 +14,9 @@ int main() {
 	Square square(5, "red");
 	Rectangle rectangle(5, 5, "green");
 	Circle circle(5, "blue");
-	Rounded_rectangle(5, 5, "teal");
-	Parallelepiped(5, 5, 5, "orange");
-	Cylinder(5, 5, "yellow");
+	Rounded_rectangle roundedRectangle(5, 5, "teal");
+	Parallelepiped paralellepiped(5, 5, 5, "orange");
+	Cylinder cylinder(5, 5, "yellow");
 
 
 
