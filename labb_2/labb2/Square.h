@@ -5,8 +5,8 @@
 class Square : public Shape
 {
 public:
-	Square(double length, std::string color = "");
-	double get_area() const override;
+	Square(double length, std::string color);
+	double get_area() const override { return length * length; };
 protected:
 	double length;
 };

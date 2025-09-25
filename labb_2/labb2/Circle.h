@@ -5,10 +5,10 @@
 class Circle : public Shape
 {
 public:
-	Circle(double radius, std::string color = "");
+	Circle(double radius, std::string color);
 	double get_area() const override { return radius*radius*pi; }
 protected:
-	double pi = 3.141592653;
+	double pi = 3.14159265359;
 	double radius;
 };
 

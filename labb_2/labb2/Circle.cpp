@@ -2,7 +2,7 @@
 
 
 
-Circle::Circle(double radius, std::string color = "") : Shape(color), r(radius)
+Circle::Circle(double radius, std::string color) : Shape(color), radius(radius)
 {
 
 }
