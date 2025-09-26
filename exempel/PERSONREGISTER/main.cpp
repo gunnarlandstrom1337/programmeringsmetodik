@@ -55,6 +55,7 @@ bool is_teacher(const person& p) {
 		return true;
 	}
 	catch (std::exception& e){}
+	return false;
 }
 
 int main() {
