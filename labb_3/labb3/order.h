@@ -11,4 +11,4 @@ private:
 	size_t cost;
 };
 
-#endif // ! ORDER_H
+#endif

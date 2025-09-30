@@ -8,9 +8,9 @@
 template < typename T, typename COMP = std::less>
 class pq {
 public:
-	pq();
-	pq(COMP comp);
-	template < typename IT > pq(IT first, IT last, COMP comp = COMP());
+	pd();
+	pd(COMP comp);
+	template < typename IT > pd(IT first, IT last, COMP comp = COMP());
 	void push(T element);
 	T top() const;
 	T pop();
@@ -20,3 +20,11 @@ public:
 
 
 #endif // ! PQ_H
+
+
+class pq {
+public:
+	pd(COMP comp);
+	void push(T element);
+	T pop();
+};
