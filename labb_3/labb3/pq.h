@@ -5,12 +5,12 @@
 
 
 
-template < typename T, typename COMP = std::less >
+template < typename T, typename COMP = std::less>
 class pq {
 public:
-	pd();
-	pd(COMP comp);
-	template < typename IT > pd(IT first, IT last, COMP comp = COMP());
+	pq();
+	pq(COMP comp);
+	template < typename IT > pq(IT first, IT last, COMP comp = COMP());
 	void push(T element);
 	T top() const;
 	T pop();
