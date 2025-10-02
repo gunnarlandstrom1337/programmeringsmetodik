@@ -7,7 +7,7 @@ class Parallelepiped : public Rectangle
 {
 public:
 	Parallelepiped(double length, double width, double height, std::string color);
-	double get_area() const override { return 2 * ((length * width) + (width * height) + (length * height)); }
+	double get_area() const override { return (2 * Rectangle::get_area() + width * height + length * height); }
 private:
 	double height;
 };

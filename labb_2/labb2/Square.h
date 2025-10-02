@@ -10,5 +10,4 @@ public:
 protected:
 	double length;
 };
-
 #endif

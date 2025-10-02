@@ -29,14 +29,7 @@ int main() {
 
 
 void get_data(const std::vector<std::unique_ptr<Shape>>& myVec) {
-	// iterera ¨o ver samtliga objekt i containern .
-	// F ¨o r varje objekt :
-	// - Skriv ut objektets f ¨a rg och skriv ut arean .
-	// Till sist skriver du ut den totala arean av
-	//samtliga objekt .
-
 	double areaTotal = 0;
-
 	for (auto& e : myVec) {
 		std::cout << "Area: " << e->get_area() << "\n";
 		std::cout << "Color: " << e->get_color() << "\n\n";

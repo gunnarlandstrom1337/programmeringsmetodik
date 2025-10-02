@@ -3,36 +3,62 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
-#include "COMP.H"
+#include "order.h"
 
 
-
-template < typename T, typename COMP = std::less<> >
+template < typename T, typename COMP = std::less<T> >
 class pq {
 public:
-	pq() :comparison(COMP()) {};
-	pq(COMP comp);
-	template < typename IT > pq(IT first, IT last, COMP comp = COMP());
-	void push(T element);
-	T top() const;
-	T pop();
-	void print() const;
-	size_t size() const;
+	pq() = default;
+	pq(COMP comp) :compare(comp) {};
+
+	pq(const std::vector<order>& orders)
+	{
+		for (size_t i = 0; i != orders.size(); i++) {
+			this->push(orders[i]);
+		}
+	};
+
+	template <typename IT> pq(IT first, IT last, COMP comp = COMP()) {
+		for (IT i = first; i != last; i++) {
+			this->priorityQueue.push_back(*i);
+		}
+		std::sort(priorityQueue.begin(), priorityQueue.end(), comp);
+	};
+
+	void push(T element) {
+		priorityQueue.push_back(element);
+		std::sort(priorityQueue.begin(), priorityQueue.end(), compare);
+	};
+
+	T top() const { return priorityQueue.front(); };
+
+	T pop() {
+		T temp = priorityQueue.back();
+		priorityQueue.pop_back();
+		return temp;
+	};
+
+	void print() const
+	{
+		for (auto& e : priorityQueue) {
+			std::cout << e;
+		}
+	};
+
+
+	size_t size() const
+	{
+		return priorityQueue.size();
+	};
+
 
 
 private:
-	COMP comparison;
+	COMP compare;
 	std::vector<T> priorityQueue;
+
 };
 
-template<typename T, typename COMP>
-template<typename IT>
-inline pq<T, COMP>::pq(IT first, IT last, COMP comp)
-{
-	for (IT i = first; i != last; i++) {
-		this->priorityQueue.push_back(*first);
-	}
-	std::sort(priorityQueue.begin(), priorityQueue.back(), comp);
-}
 
 #endif

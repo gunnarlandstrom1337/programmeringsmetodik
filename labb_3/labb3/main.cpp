@@ -1,12 +1,14 @@
 #include "order.h"
-#include "pq.cpp"
-#include <vector>
-#include <iostream>
+#include "pq.h"
+
+struct compareByPrice {
+	bool operator()(const order& lhs, const order rhs) {
+		return lhs.getCost() < rhs.getCost();
+	}
+};
 
 void buyAndSell(std::string name, std::vector<order>& buys, std::vector<order>& sells);
-void fillPrioqueue(std::vector<order>& clients, pq<order>& prioQueue);
-
-
+void insertPrio(std::vector<order>& clients, pq<order, compareByPrice>& prioQueue);
 
 int main() {
 
@@ -17,12 +19,13 @@ int main() {
 	buyAndSell("Joakim von Anka", buyOrders, sellOrders);
 	buyAndSell("Jarl Wallenburg", buyOrders, sellOrders);
 
-	//pq<order> test(buyOrders.begin(), buyOrders.end());
-	pq<order> buyers;
-	pq<order> sellers;
+	pq<order, compareByPrice> buyers(buyOrders);
+	pq<order, compareByPrice> sellers(sellOrders);
 
-	fillPrioqueue(buyOrders, buyers);
-	fillPrioqueue(sellOrders, sellers);
+	// insertPrio(buyOrders, buyers);
+	// insertPrio(sellOrders, sellers);
+	
+	pq<order, compareByPrice> test(buyOrders.begin(), buyOrders.end());
 
 	std::cout << "Buyers \n";
 	buyers.print();
@@ -30,22 +33,17 @@ int main() {
 	std::cout << "\n Sellers \n";
 	sellers.print();
 
+
+	std::cout << "\n Testing \n";
+	test.print();
+
 	return 0;
 }
 
-struct comp {
-public:
-	bool operator()(const order& lhs, const order rhs) {
-		return lhs.getCost() < rhs.getCost();
-	}
-};
-
-void fillPrioqueue(std::vector<order>& clients, pq<order>& prioQueue) {
-	std::sort(clients.begin(), clients.end(), comp());
+void insertPrio(std::vector<order>& clients, pq<order, compareByPrice>& prioQueue) {
 	for (size_t i = 0; i != clients.size(); i++) {
 		prioQueue.push(clients[i]);
 	}
-
 }
 
 void buyAndSell(std::string name, std::vector<order>& buys, std::vector<order>& sells) {

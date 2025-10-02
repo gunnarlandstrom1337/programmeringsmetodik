@@ -21,9 +21,6 @@
     <ClInclude Include="pq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="COMP.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="order.cpp">
