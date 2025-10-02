@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="COMP.h" />
     <ClInclude Include="order.h" />
     <ClInclude Include="pq.h" />
   </ItemGroup>

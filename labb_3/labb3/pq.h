@@ -1,30 +1,38 @@
 #ifndef  PQ_H
 #define PQ_H
-#include <functional>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+#include "COMP.H"
 
 
 
-
-template < typename T, typename COMP = std::less>
+template < typename T, typename COMP = std::less<> >
 class pq {
 public:
-	pd();
-	pd(COMP comp);
-	template < typename IT > pd(IT first, IT last, COMP comp = COMP());
+	pq() :comparison(COMP()) {};
+	pq(COMP comp);
+	template < typename IT > pq(IT first, IT last, COMP comp = COMP());
 	void push(T element);
 	T top() const;
 	T pop();
-	bool empty() const;
+	void print() const;
 	size_t size() const;
+
+
+private:
+	COMP comparison;
+	std::vector<T> priorityQueue;
 };
 
+template<typename T, typename COMP>
+template<typename IT>
+inline pq<T, COMP>::pq(IT first, IT last, COMP comp)
+{
+	for (IT i = first; i != last; i++) {
+		this->priorityQueue.push_back(*first);
+	}
+	std::sort(priorityQueue.begin(), priorityQueue.back(), comp);
+}
 
-#endif // ! PQ_H
-
-
-class pq {
-public:
-	pd(COMP comp);
-	void push(T element);
-	T pop();
-};
+#endif
