@@ -1,7 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <iterator>
-
+#include <algorithm>
 
 template<typename ForwardIt>
 ForwardIt find_min(ForwardIt first, ForwardIt last) {
@@ -44,7 +44,9 @@ int main() {
 	selection_sort(v.begin(), v.end());
 	std::copy(v.begin(), v.end(), out);
 
+	/*
 	for (auto e : v) {
 		std::cout << e << "\n";
 	}
+	*/
 }
