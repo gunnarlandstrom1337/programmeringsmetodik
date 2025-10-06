@@ -3,15 +3,18 @@
 
 struct compareByPrice {
 	bool operator()(const order& lhs, const order rhs) {
-		return lhs.getCost() < rhs.getCost();
+		return lhs.getCost() > rhs.getCost();
 	}
 };
 
+
+
 void buyAndSell(std::string name, std::vector<order>& buys, std::vector<order>& sells);
-void insertPrio(std::vector<order>& clients, pq<order, compareByPrice>& prioQueue);
+//void insertPrio(std::vector<order>& clients, pq<order, compareByPrice>& prioQueue);
+//void orderTransactions(pq<order, compareByPrice>& buyers, pq<order, compareByPrice>& sellers);
 
 int main() {
-
+	srand(time(NULL));
 	std::vector<order> buyOrders;
 	std::vector<order> sellOrders;
 
@@ -24,8 +27,8 @@ int main() {
 
 	// insertPrio(buyOrders, buyers);
 	// insertPrio(sellOrders, sellers);
-	
-	pq<order, compareByPrice> test(buyOrders.begin(), buyOrders.end());
+
+	// pq<order, compareByPrice> test(buyOrders.begin(), buyOrders.end());
 
 	std::cout << "Buyers \n";
 	buyers.print();
@@ -33,18 +36,30 @@ int main() {
 	std::cout << "\n Sellers \n";
 	sellers.print();
 
+	//	std::cout << "\n Testing \n";
+	//	test.print();
+	std::cout << "\n Transactions: \n";
 
-	std::cout << "\n Testing \n";
-	test.print();
+
+	orderTransactions(buyers, sellers, compareByPrice());
+
 
 	return 0;
 }
 
+/*
+void orderTransactions(pq<order, compareByPrice>& buyers, pq<order, compareByPrice>& sellers) {
+	std::cout << "sup";
+}
+*/
+
+/*
 void insertPrio(std::vector<order>& clients, pq<order, compareByPrice>& prioQueue) {
 	for (size_t i = 0; i != clients.size(); i++) {
 		prioQueue.push(clients[i]);
 	}
 }
+*/
 
 void buyAndSell(std::string name, std::vector<order>& buys, std::vector<order>& sells) {
 
@@ -57,4 +72,6 @@ void buyAndSell(std::string name, std::vector<order>& buys, std::vector<order>& 
 		sells.push_back(temp);
 	}
 }
+
+
 

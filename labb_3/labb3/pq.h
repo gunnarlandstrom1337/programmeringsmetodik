@@ -6,7 +6,7 @@
 #include "order.h"
 
 
-template < typename T, typename COMP = std::less<T> >
+template < typename T, typename COMP = std::less<T>>
 class pq {
 public:
 	pq() = default;
@@ -31,7 +31,7 @@ public:
 		std::sort(priorityQueue.begin(), priorityQueue.end(), compare);
 	};
 
-	T top() const { return priorityQueue.front(); };
+	T top() const { return priorityQueue.back(); };
 
 	T pop() {
 		T temp = priorityQueue.back();
@@ -39,26 +39,51 @@ public:
 		return temp;
 	};
 
+
 	void print() const
 	{
 		for (auto& e : priorityQueue) {
-			std::cout << e;
+			std::cout << e << "\n";
 		}
 	};
 
+	bool isEmpty() const {
+		size_t temp = priorityQueue.size();
+		if (temp == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	size_t size() const
 	{
 		return priorityQueue.size();
 	};
 
+	friend void orderTransactions(pq<order, COMP>& buyers, pq<order, COMP>& sellers, COMP comp) {
 
+
+		while (!buyers.isEmpty() && !sellers.isEmpty()) {
+			if (comp(buyers.top(), sellers.top())) {
+				order buy = buyers.top();
+				order sell = sellers.top();
+				std::cout << buy.getName() << " buys from " << sell.getName() << " (" << sell.getCost() << ") for: " << buy.getCost() << "\n";
+				buyers.pop();
+				sellers.pop();
+			}
+			else {
+				buyers.pop();
+			}
+		}
+	}
 
 private:
 	COMP compare;
 	std::vector<T> priorityQueue;
-
 };
+
 
 
 #endif
