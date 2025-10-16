@@ -34,15 +34,12 @@ int main() {
 	std::cout << "\nTesting #3\n\n";
 
 	auto it2 = std::adjacent_find(myVec.begin(), myVec.end());
-	if (it2 == myVec.end()) {
-
-	}
-	else {
+	if (it2 != myVec.end()) {
 		Car tempCar = *it2;
 		std::cout << "Duplicate name found!\n";
 		MyPrint temp2(tempCar);
-
 	}
+	
 
 	/*
 	// #4
