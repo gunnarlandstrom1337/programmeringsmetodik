@@ -8,13 +8,12 @@ class MyPrint
 {
 public:
 	MyPrint();
-	MyPrint(const std::vector<Car>& car);
 	MyPrint(const Car& car);
+	
+	MyPrint(const std::vector<Car>& car);
+	MyPrint(const std::vector<double>& doubleVec);
 	void printCar(const std::vector<Car>& cars);
-	void print();
 	friend std::ostream& operator<<(std::ostream&, const Car& car);
-private:
-	std::vector<Car> savedVec;
 };
 
 

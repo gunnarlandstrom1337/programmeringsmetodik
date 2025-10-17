@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 
-
 class Car
 {
 public:
@@ -16,8 +15,8 @@ public:
 	
 	friend bool operator ==(const Car& lhs, const Car& rhs);
 private:
-	std::string carName;
-	double carSpeed;
+	std::string carName = "";
+	double carSpeed = 0;
 };
 
 

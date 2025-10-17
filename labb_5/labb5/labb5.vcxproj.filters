@@ -38,5 +38,14 @@
     <ClInclude Include="Predicate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyBinOp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyUnOp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

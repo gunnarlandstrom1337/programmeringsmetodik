@@ -6,7 +6,7 @@ std::ostream& operator <<(std::ostream& rhs, const Car& car)
 	return rhs;
 }
 
-MyPrint::MyPrint(const std::vector<Car>& car): savedVec(car)
+MyPrint::MyPrint(const std::vector<Car>& car)
 {
 	printCar(car);
 }
@@ -15,6 +15,12 @@ MyPrint::MyPrint(const Car& car)
 {
 	std::cout << "Car name: " << car.getCarName() << " Car speed: " << car.getCarSpeed() << "\n";
 }
+
+/*
+MyPrint::MyPrint(std::vector<Car>::iterator& it)
+{
+}
+*/
 
 MyPrint::MyPrint()
 {
@@ -26,10 +32,9 @@ void MyPrint::printCar(const std::vector<Car>& cars) {
 	}
 }
 
-void MyPrint::print()
-{
-	for (auto& e : savedVec) {
-		std::cout << e;
+MyPrint::MyPrint(const std::vector<double>& doubleVec) {
+	for (auto& e : doubleVec) {
+		std::cout << "Value: " << e << "\n";
 	}
 }
 

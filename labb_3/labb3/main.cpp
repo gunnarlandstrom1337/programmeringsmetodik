@@ -2,7 +2,7 @@
 #include "pq.h"
 
 struct compareByPrice {
-	bool operator()(const order& lhs, const order rhs) {
+	bool operator()(const order& lhs, const order& rhs) {
 		return lhs.getCost() > rhs.getCost();
 	}
 };
