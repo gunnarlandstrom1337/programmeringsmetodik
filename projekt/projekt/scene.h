@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include "player.h"
+#include "enemy.h"
 
 class Scene : public QGraphicsScene
 {
@@ -11,12 +12,14 @@ class Scene : public QGraphicsScene
 public:
     explicit Scene(QObject *parent = nullptr);
     void addPlayer();
+    void addEnemy();
 
 signals:
 
 public slots:
 private:
     Player* player;
+    Enemy* enemy;
 
     // QGraphicsScene interface
 protected:

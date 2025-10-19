@@ -1,7 +1,6 @@
 #include "scene.h"
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
-#include <iostream>
 
 
 Scene::Scene(QObject *parent) :QGraphicsScene(parent)
@@ -16,6 +15,14 @@ void Scene::addPlayer()
     player = new Player(QPixmap(":/Images/faceDown1.png"));
     player->setPos(-25,-25);
     addItem(player);
+}
+
+void Scene::addEnemy()
+{
+    enemy = new Enemy();
+    enemy->setPos(-150,0);
+    enemy->setScale(3);
+    addItem(enemy);
 }
 
 void Scene::keyPressEvent(QKeyEvent *event)

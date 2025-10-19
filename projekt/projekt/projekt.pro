@@ -10,12 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     MainWindow.cpp \
+    enemy.cpp \
     main.cpp \
     player.cpp \
     scene.cpp
 
 HEADERS += \
     MainWindow.h \
+    enemy.h \
     player.h \
     scene.h
 

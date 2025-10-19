@@ -25,57 +25,6 @@ Player::Player(QPixmap pixmap) : playerPosition(PlayerPosition::Down), playerDir
             });
 
     playerDirectionTimer->start(updateTimer);
-
-    /* ROTATION AND FALLING ANIMATION
-    groundPosition = scenePos().y() + 290;
-    yAnimation = new QPropertyAnimation(this,"y", this);
-    yAnimation->setStartValue(scenePos().y());
-    yAnimation->setEndValue(groundPosition);
-    yAnimation->setEasingCurve(QEasingCurve::InQuad);
-
-    yAnimation->setDuration(1000);
-    yAnimation->start();
-    */
-
-}
-
-
-/* Falling char and rotation
-qreal Player::rotation() const
-{
-    return m_rotation;
-}
-
-void Player::setRotation(qreal newRotation)
-{
-    m_rotation = newRotation;
-}
-*/
-
-
-qreal Player::x() const
-{
-
-    return m_x;
-}
-
-void Player::setX(qreal x)
-{
-    moveBy(0,x-m_x);
-    m_x = x;
-}
-
-
-
-qreal Player::y() const
-{
-    return m_y;
-}
-
-void Player::setY(qreal y)
-{
-    moveBy(0,y-m_y);
-    m_y = y;
 }
 
 void Player::setUpdateTimer(size_t input)

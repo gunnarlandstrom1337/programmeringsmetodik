@@ -1,20 +1,12 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <QPropertyAnimation>
 #include <QObject>
 #include <QGraphicsPixmapItem>
 
 class Player : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
-    /* RORATIONAL MOVEMENT AND FALLING
-    Q_PROPERTY(qreal rotation READ rotation WRITE setRotation)
-
-
-*/
-    Q_PROPERTY(qreal x READ x WRITE setX)
-    Q_PROPERTY(qreal y READ y WRITE setY)
 public:
     explicit Player(QPixmap playerPixmap);
 
@@ -45,17 +37,6 @@ public:
     void setYCord(int y);
     int getXCord();
     int getYCord();
-
-    qreal y() const;
-    void setY(qreal y);
-    qreal x() const;
-    void setX(qreal x);
-    /* ROTATIONAL MOVEMENT AND FALLING
-
-    ;
-    qreal rotation() const;
-    void setRotation(qreal newRotation);
-    */
 
     // Animations
     QPixmap faceUp();
@@ -92,19 +73,6 @@ private:
     int playerXCord = 0;
     int playerYCord = 0;
     size_t updateTimer = 20;
-
-
-    /* ROTATIONAL MOVEMENT AND FALLING
-    qreal m_rotation;
-
-
-    qreal groundPosition;
-
-    QPropertyAnimation* rotationAnimation;
-    */
-    qreal m_y;
-    qreal m_x;
-    QPropertyAnimation* yAnimation;
 
 };
 
