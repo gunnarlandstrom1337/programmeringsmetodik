@@ -1,6 +1,7 @@
 #include "scene.h"
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
+#include <iostream>
 
 
 Scene::Scene(QObject *parent) :QGraphicsScene(parent)
@@ -13,33 +14,46 @@ Scene::Scene(QObject *parent) :QGraphicsScene(parent)
 void Scene::addPlayer()
 {
     player = new Player(QPixmap(":/Images/faceDown1.png"));
+    player->setPos(-25,-25);
     addItem(player);
 }
 
 void Scene::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Up) {
+    // North,South,Easter, West
+    if (event->key() == Qt::Key_Up || event->key() == Qt::Key_W) {
+        player->setPlayerRunning(true);
         player->moveUp();
-        player->setYCord(-10);
-        player->setPos(player->getXCord(),player->getYCord());
     }
-    if (event->key() == Qt::Key_Down) {
-
+    if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S) {
+        player->setPlayerRunning(true);
         player->moveDown();
-        player->setYCord(10);
-        player->setPos(player->getXCord(),player->getYCord());
-    }
-    if (event->key() == Qt::Key_Right) {
 
+    }
+    if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D) {
+        player->setPlayerRunning(true);
         player->moveRight();
-        player->setXCord(10);
-        player->setPos(player->getXCord(),player->getYCord());
     }
-    if (event->key() == Qt::Key_Left) {
-
+    if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A) {
+        player->setPlayerRunning(true);
         player->moveLeft();
-        player->setXCord(-10);
-        player->setPos(player->getXCord(),player->getYCord());
+    }
+    // Northeast, Northwest, Southeast, SouthWest
+    if ((event->key() == Qt::Key_Up && event->key() == Qt::Key_Left) || (event->key() == Qt::Key_W && event->key() == Qt::Key_A)){
+        player->setPlayerRunning(true);
+        player->moveNorthWest();
+    }
+    if ((event->key() == Qt::Key_Up && event->key() == Qt::Key_Right) || (event->key() == Qt::Key_W && event->key() == Qt::Key_D)){
+        player->setPlayerRunning(true);
+        player->moveNorthEast();
+    }
+    if ((event->key() == Qt::Key_Down && event->key() == Qt::Key_Left) || (event->key() == Qt::Key_S && event->key() == Qt::Key_A)){
+        player->setPlayerRunning(true);
+        player->moveSouthWest();
+    }
+    if ((event->key() == Qt::Key_Down && event->key() == Qt::Key_Right) || (event->key() == Qt::Key_S && event->key() == Qt::Key_D)){
+        player->setPlayerRunning(true);
+        player->moveSouthEast();
     }
 }
 
@@ -53,20 +67,22 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void Scene::keyReleaseEvent(QKeyEvent *event)
 {
 
-    if (event->KeyRelease) {
-        player->faceUp();
-    }
-    if (event->KeyRelease) {
+    if (event->key() == Qt::Key_Up || event->key() == Qt::Key_W) {
 
-        player->faceDown();
-    }
-    if (event->KeyRelease) {
+        player->standUp();
 
-        player->faceRight();
     }
-    if (event->KeyRelease) {
+    if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S) {
 
-        player->faceLeft();
+        player->standDown();
+    }
+    if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D) {
+
+        player->standRight();
+    }
+    if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A) {
+        player->setPlayerRunning(false);
+        player->standLeft();
     }
 }
 

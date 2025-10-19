@@ -49,5 +49,40 @@
         <file>Images/runUp4.png</file>
         <file>Images/runUp5.png</file>
         <file>Images/runUp6.png</file>
+        <file>Images/enemyDeath1.png</file>
+        <file>Images/enemyDeath2.png</file>
+        <file>Images/enemyDeath3.png</file>
+        <file>Images/enemyDeath4.png</file>
+        <file>Images/enemyDeath5.png</file>
+        <file>Images/enemyDeath6.png</file>
+        <file>Images/enemyDeathLeft1.png</file>
+        <file>Images/enemyDeathLeft2.png</file>
+        <file>Images/enemyDeathLeft3.png</file>
+        <file>Images/enemyDeathLeft4.png</file>
+        <file>Images/enemyDeathLeft5.png</file>
+        <file>Images/enemyDeathLeft6.png</file>
+        <file>Images/enemyHurt1.png</file>
+        <file>Images/enemyHurt2.png</file>
+        <file>Images/enemyHurtLeft1.png</file>
+        <file>Images/enemyHurtLeft2.png</file>
+        <file>Images/enemySpawn1.png</file>
+        <file>Images/enemySpawn2.png</file>
+        <file>Images/enemySpawn3.png</file>
+        <file>Images/enemySpawn4.png</file>
+        <file>Images/enemySpawnLeft1.png</file>
+        <file>Images/enemySpawnLeft2.png</file>
+        <file>Images/enemySpawnLeft3.png</file>
+        <file>Images/enemyWalk1.png</file>
+        <file>Images/enemyWalk2.png</file>
+        <file>Images/enemyWalk3.png</file>
+        <file>Images/enemyWalk4.png</file>
+        <file>Images/enemyWalk5.png</file>
+        <file>Images/enemyWalk6.png</file>
+        <file>Images/enemyWalkLeft1.png</file>
+        <file>Images/enemyWalkLeft2.png</file>
+        <file>Images/enemyWalkLeft3.png</file>
+        <file>Images/enemyWalkLeft4.png</file>
+        <file>Images/enemyWalkLeft5.png</file>
+        <file>Images/enemyWalkLeft6.png</file>
     </qresource>
 </RCC>

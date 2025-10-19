@@ -18,6 +18,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    Scene* scene;
+    Scene* sceneMap;
+    Scene* sceneCamera;
 };
 #endif // WIDGET_H
