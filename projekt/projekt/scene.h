@@ -3,6 +3,7 @@
 
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QMap>
 #include "player.h"
 #include "enemy.h"
 
@@ -20,6 +21,14 @@ public slots:
 private:
     Player* player;
     Enemy* enemy;
+
+    bool movingUp = false;
+    bool movingDown = false;
+    bool movingLeft = false;
+    bool movingRight = false;
+
+
+
 
     // QGraphicsScene interface
 protected:

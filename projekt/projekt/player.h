@@ -15,39 +15,45 @@ public:
 
 
     // Moving
+    void movePlayer();
     void moveUp();
     void moveDown();
     void moveLeft();
     void moveRight();
+    bool isPlayerRunning(){ return playerRunning; }
+
+    //called from Scene
+    void movePlayerUp();
+    void movePlayerDown();
+    void movePlayerLeft();
+    void movePlayerRight();
+
+    // Unused
     void moveNorthWest();
     void moveNorthEast();
     void moveSouthWest();
     void moveSouthEast();
 
-    // Standing
-    void standUp();
-    void standDown();
-    void standLeft();
-    void standRight();
-
     // Setters, Getters
     void setPlayerRunning(bool input);
-    void setPlayerDirection(char input);
     void setXCord(int x);
     void setYCord(int y);
     int getXCord();
     int getYCord();
 
     // Animations
+
+    //Standing
     QPixmap faceUp();
     QPixmap faceDown();
     QPixmap faceLeft();
     QPixmap faceRight();
+
+    //Running
     QPixmap runUp();
     QPixmap runDown();
     QPixmap runLeft();
     QPixmap runRight();
-
 
 
 
@@ -57,7 +63,8 @@ public slots:
 
 
 private:
-    enum PlayerPosition{
+    // Direction for Pixmap and movement
+    enum PlayerDirection{
         Up,
         Down,
         Left,
@@ -65,9 +72,12 @@ private:
     };
 
 
+
+
+    QTimer *movementTimer;
+    //QMap<int, bool> keysPressed;
     void updatePlayerPixmap();
-    PlayerPosition playerPosition;
-    char playerDirection; // W : UP, S: down, A : left, D : right
+    PlayerDirection playerDirection;
     bool playerRunning = false;
     int updatePic = 0;
     int playerXCord = 0;
