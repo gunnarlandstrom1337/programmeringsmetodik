@@ -10,10 +10,6 @@ class Player : public QObject, public QGraphicsPixmapItem
 public:
     explicit Player(QPixmap playerPixmap);
 
-    void setUpdateTimer(size_t input);
-
-
-
     // Moving
     void movePlayer();
     void moveUp();
@@ -27,6 +23,10 @@ public:
     void movePlayerDown();
     void movePlayerLeft();
     void movePlayerRight();
+    void movePlayerNorthWest();
+    void movePlayerNorthEast();
+    void movePlayerSouthWest();
+    void movePlayerSouthEast();
 
     // Unused
     void moveNorthWest();
@@ -35,9 +35,10 @@ public:
     void moveSouthEast();
 
     // Setters, Getters
+    void setPlayerDirection(wchar_t input);
     void setPlayerRunning(bool input);
-    void setXCord(int x);
-    void setYCord(int y);
+    void setXCord(double x);
+    void setYCord(double y);
     int getXCord();
     int getYCord();
 
@@ -64,12 +65,7 @@ public slots:
 
 private:
     // Direction for Pixmap and movement
-    enum PlayerDirection{
-        Up,
-        Down,
-        Left,
-        Right
-    };
+
 
 
 
@@ -77,12 +73,11 @@ private:
     QTimer *movementTimer;
     //QMap<int, bool> keysPressed;
     void updatePlayerPixmap();
-    PlayerDirection playerDirection;
+    std::string playerDirection;
     bool playerRunning = false;
     int updatePic = 0;
-    int playerXCord = 0;
-    int playerYCord = 0;
-    size_t updateTimer = 20;
+    double playerXCord = 0;
+    double playerYCord = 0;
 
 };
 

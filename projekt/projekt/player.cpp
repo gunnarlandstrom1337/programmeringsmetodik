@@ -1,7 +1,7 @@
 #include "player.h"
 #include <QTimer>
 
-Player::Player(QPixmap pixmap) : playerDirection(PlayerDirection::Down)
+Player::Player(QPixmap pixmap) : playerDirection("S"), playerRunning(false)
 {
     setPixmap(pixmap);
 
@@ -14,46 +14,39 @@ Player::Player(QPixmap pixmap) : playerDirection(PlayerDirection::Down)
                 else {
                     updatePic = 1;
                 }
-                if (playerRunning == false){
-
-                    playerGraphicTimer->setInterval(90);
-                }
-                else {
-                    updatePlayerPixmap();
-                    playerGraphicTimer->setInterval(60);
-                }
-                 updatePlayerPixmap();
+                updatePlayerPixmap();
             });
-
-    QTimer* playerMoveTimer = new QTimer(this);
-    connect(playerMoveTimer, &QTimer::timeout,[=]()
-            {
-                movePlayer();
-            });
-
-    playerGraphicTimer->start(90);
-    playerMoveTimer->start(5);
-}
-
-void Player::setUpdateTimer(size_t input)
-{
-    updateTimer = input;
+    playerGraphicTimer->start(80);
 }
 
 void Player::movePlayer()
 {
     if (playerRunning){
-        if (playerDirection == Up){
+
+
+        if (playerDirection == "N"){
             moveUp();
         }
-        if (playerDirection == Down){
+        if (playerDirection == "S"){
             moveDown();
         }
-        if (playerDirection == Left){
+        if (playerDirection == "W"){
             moveLeft();
         }
-        if (playerDirection == Right){
+        if (playerDirection == "E"){
             moveRight();
+        }
+        if (playerDirection == "NW"){
+            moveNorthWest();
+        }
+        if (playerDirection == "NE"){
+            moveNorthEast();
+        }
+        if (playerDirection == "SW"){
+            moveSouthWest();
+        }
+        if (playerDirection == "SE"){
+            moveSouthEast();
         }
     }
 }
@@ -62,27 +55,57 @@ void Player::movePlayer()
 void Player::movePlayerUp()
 {
     playerRunning = true;
-    playerDirection = Up;
+    playerDirection = "N";
     movePlayer();
 }
 void Player::movePlayerDown()
 {
     playerRunning = true;
-    playerDirection = Down;
+    playerDirection = "S";
     movePlayer();
 }
 
 void Player::movePlayerLeft()
 {
     playerRunning = true;
-    playerDirection = Left;
+    playerDirection = "W";
     movePlayer();
 }
 
 void Player::movePlayerRight()
 {
     playerRunning = true;
-    playerDirection = Right;
+    playerDirection = "E";
+    movePlayer();
+}
+
+void Player::movePlayerNorthWest()
+{
+    playerRunning = true;
+    playerDirection = "NW";
+    movePlayer();
+
+}
+
+void Player::movePlayerNorthEast()
+{
+    playerRunning = true;
+    playerDirection = "NE";
+    movePlayer();
+}
+
+void Player::movePlayerSouthWest()
+{
+    playerRunning = true;
+    playerDirection = "SW";
+    movePlayer();
+
+}
+
+void Player::movePlayerSouthEast()
+{
+    playerRunning = true;
+    playerDirection = "SE";
     movePlayer();
 }
 
@@ -124,20 +147,20 @@ void Player::moveRight()
 
 void Player::moveNorthWest()
 {
-    if(getXCord() > 945 && getYCord() > -410){
-        moveBy(-5,-5);
-        setXCord(-5);
-        setYCord(-5);
+    if(getXCord() > -945 && getYCord() > -410){
+        moveBy(-0.8,-0.8);
+        setXCord(-0.8);
+        setYCord(-0.8);
         updatePlayerPixmap();
     }
 }
 
 void Player::moveNorthEast()
 {
-    if(getXCord() > -945 && getYCord() > -410){
-        moveBy(5,-5);
-        setXCord(5);
-        setYCord(-5);
+    if(getXCord() < 945 && getYCord() > -410){
+        moveBy(0.8,-0.8);
+        setXCord(0.8);
+        setYCord(-0.8);
         updatePlayerPixmap();
     }
 }
@@ -145,22 +168,27 @@ void Player::moveNorthEast()
 void Player::moveSouthWest()
 {
     if(getXCord() > -945 && getYCord() < 435){
-        moveBy(-5,5);
-        setXCord(-5);
-        setYCord(5);
+        moveBy(-0.8,0.8);
+        setXCord(-0.8);
+        setYCord(0.8);
         updatePlayerPixmap();
     }
 }
 
 void Player::moveSouthEast()
 {
-    if(getXCord() < 945 && getYCord() > 435){
-        moveBy(5,-5);
-        setXCord(5);
-        setYCord(-5);
+    if(getXCord() < 945 && getYCord() < 435){
+        moveBy(0.8,0.8);
+        setXCord(0.8);
+        setYCord(0.8);
         updatePlayerPixmap();
     }
 
+}
+
+void Player::setPlayerDirection(wchar_t input)
+{
+    playerDirection = input;
 }
 
 
@@ -169,12 +197,12 @@ void Player::setPlayerRunning(bool input)
     playerRunning = input;
 }
 
-void Player::setXCord(int x)
+void Player::setXCord(double x)
 {
     playerXCord += x;
 }
 
-void Player::setYCord(int y)
+void Player::setYCord(double y)
 {
     playerYCord += y;
 }
@@ -196,31 +224,31 @@ void Player::updatePlayerPixmap()
     if (!playerRunning){
 
 
-        if(playerDirection == Up){
+        if(playerDirection == "N"){
             setPixmap(QPixmap(faceUp()));
         }
-        else if (playerDirection == Down){
+        else if (playerDirection == "S"){
             setPixmap(QPixmap(faceDown()));
         }
-        else if (playerDirection == Left){
+        else if (playerDirection == "W"){
             setPixmap(QPixmap(faceLeft()));
         }
-        else if (playerDirection == Right){
+        else if (playerDirection == "E"){
             setPixmap(QPixmap(faceRight()));
         }
     }
     if (playerRunning){
 
-        if(playerDirection == Up){
+        if(playerDirection == "N"){
             setPixmap(QPixmap(runUp()));
         }
-        if(playerDirection == Down){
+        if(playerDirection == "S"){
             setPixmap(QPixmap(runDown()));
         }
-        else if(playerDirection == Left){
+        else if(playerDirection == "W"  || playerDirection == "NW" || playerDirection == "SW"){
             setPixmap(QPixmap(runLeft()));
         }
-        else if(playerDirection == Right){
+        else if(playerDirection == "E"  || playerDirection == "NE" || playerDirection == "SE"){
             setPixmap(QPixmap(runRight()));
         }
     }
@@ -257,6 +285,9 @@ QPixmap Player::faceDown()
         updatePic = 1;
         return QPixmap(":/Images/faceDown6.png");
     }
+    else {
+        return QPixmap(":/Images/faceDown1.png");
+    }
 }
 QPixmap Player::faceUp()
 {
@@ -288,6 +319,9 @@ QPixmap Player::faceUp()
     {
         updatePic = 1;
         return QPixmap(":/Images/faceUp6.png");
+    }
+    else {
+        return QPixmap(":/Images/faceUp1.png");
     }
 }
 QPixmap Player::faceLeft()
@@ -322,6 +356,9 @@ QPixmap Player::faceLeft()
         updatePic = 1;
         return QPixmap(":/Images/faceLeft6.png");
     }
+    else {
+        return QPixmap(":/Images/faceLeft1.png");
+    }
 }
 QPixmap Player::faceRight()
 {
@@ -354,6 +391,9 @@ QPixmap Player::faceRight()
     {
         updatePic = 1;
         return QPixmap(":/Images/faceRight6.png");
+    }
+    else {
+        return QPixmap(":/Images/faceRight1.png");
     }
 
 }
@@ -388,6 +428,9 @@ QPixmap Player::runDown(){
     {
         updatePic = 1;
         return QPixmap(":/Images/runDown6.png");
+    }
+    else {
+        return QPixmap(":/Images/runDown1.png");
     }
 
 }
@@ -424,6 +467,10 @@ QPixmap Player::runUp(){
         updatePic = 1;
         return QPixmap(":/Images/runUp6.png");
     }
+    else {
+
+        return QPixmap(":/Images/runUp1.png");
+    }
 
 }
 QPixmap Player::runLeft(){
@@ -458,6 +505,9 @@ QPixmap Player::runLeft(){
         updatePic = 1;
         return QPixmap(":/Images/runLeft6.png");
     }
+    else {
+        return QPixmap(":/Images/runLeft1.png");
+    }
 }
 
 QPixmap Player::runRight(){
@@ -491,6 +541,9 @@ QPixmap Player::runRight(){
     {
         updatePic = 1;
         return QPixmap(":/Images/runRight6.png");
+    }
+    else {
+        return QPixmap(":/Images/runRight1.png");
     }
 }
 

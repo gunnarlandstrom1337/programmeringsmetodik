@@ -22,10 +22,15 @@ private:
     Player* player;
     Enemy* enemy;
 
+    void movingDirection();
     bool movingUp = false;
     bool movingDown = false;
     bool movingLeft = false;
     bool movingRight = false;
+    bool movingNorthEast = false;
+    bool movingNorthWest = false;
+    bool movingSouthEast = false;
+    bool movingSouthWest = false;
 
 
 
