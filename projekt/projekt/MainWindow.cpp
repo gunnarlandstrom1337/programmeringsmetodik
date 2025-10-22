@@ -1,10 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QGraphicsPixmapItem>
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
+
+
 
 
     //Kartan
@@ -30,11 +35,14 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
 
     sceneMap->addPlayer();
-    sceneMap->addEnemy();
 
+
+
+    std::cout << "VECTORSIZE: " << sceneMap->getEnemyVec().size();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+

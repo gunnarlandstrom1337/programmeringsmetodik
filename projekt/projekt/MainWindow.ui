@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1173</width>
-    <height>659</height>
+    <width>1901</width>
+    <height>752</height>
    </rect>
   </property>
   <property name="cursor">
@@ -28,6 +28,13 @@
       </property>
       <property name="mouseTracking">
        <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="startGame">
+      <property name="text">
+       <string>PushButton</string>
       </property>
      </widget>
     </item>

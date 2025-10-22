@@ -9,9 +9,11 @@ class Enemy :public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit Enemy();
+    Enemy();
     void spawnAnimation();
     std::pair<int,int> spawnPosition();
+
+    ~Enemy() = default;
 
 signals:
 

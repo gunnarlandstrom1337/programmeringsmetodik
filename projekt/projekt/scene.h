@@ -14,6 +14,7 @@ public:
     explicit Scene(QObject *parent = nullptr);
     void addPlayer();
     void addEnemy();
+    std::vector<Enemy*>& getEnemyVec();
 
 signals:
 
@@ -21,6 +22,8 @@ public slots:
 private:
     Player* player;
     Enemy* enemy;
+
+    std::vector<Enemy*> enemyVector;
 
     void movingDirection();
     bool movingUp = false;

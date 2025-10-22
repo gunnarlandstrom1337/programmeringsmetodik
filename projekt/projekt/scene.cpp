@@ -9,14 +9,25 @@
 Scene::Scene(QObject *parent) :QGraphicsScene(parent)
 {
 
-    std::srand(time(NULL));
-
     QTimer* playerMoving = new QTimer(this);
     connect(playerMoving, &QTimer::timeout,[=]()
             {
                 movingDirection();
+
+
+
             });
     playerMoving->start(5);
+
+    QTimer* addingEnemies = new QTimer(this);
+    connect(addingEnemies, &QTimer::timeout,[=]()
+            {
+                addEnemy();
+
+
+
+            });
+    addingEnemies->start(3000);
 
 }
 
@@ -30,15 +41,33 @@ void Scene::addPlayer()
 
 void Scene::addEnemy()
 {
-    enemy = new Enemy();
-    int spawnXAxis = std::rand() % 1890;
-    //spawnXAxis += -945;
-    int spawnYAxis = std::rand() % 845;
-    //spawnYAxis += -410;
-    std::cout << "Xaxis: " << spawnXAxis << "YAxis: " << spawnYAxis;
-    enemy->setPos(spawnXAxis,spawnYAxis);
-    enemy->setScale(3);
-    addItem(enemy);
+    std::srand(time(NULL));
+    Enemy* tempEnemy;
+    tempEnemy = new Enemy();
+
+    // Needed for x to get randomized for some reason
+    int garbagerand = std::rand();
+
+    int spawnXAxis = 0;
+    int spawnYAxis = 0;
+    spawnXAxis = std::rand() % 1890;
+    spawnXAxis += -945;
+    spawnYAxis = std::rand() % 845;
+    spawnYAxis += -410;
+    while (spawnXAxis < player->getXCord()+350 && spawnXAxis > player->getXCord()-350){
+        spawnXAxis = std::rand() % 1890;
+        spawnXAxis += -945;
+    }
+    std::cout << "X AXIS: " << spawnXAxis << "Y AXIS: " << spawnYAxis;
+    tempEnemy->setPos(spawnXAxis,spawnYAxis);
+    tempEnemy->setScale(3);
+    addItem(tempEnemy);
+    enemyVector.push_back(tempEnemy);
+}
+
+std::vector<Enemy*> &Scene::getEnemyVec()
+{
+    return enemyVector;
 }
 
 void Scene::movingDirection()
@@ -88,11 +117,11 @@ void Scene::keyPressEvent(QKeyEvent *event)
     }
     if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A) {
         movingLeft = true;
-       // player->movePlayerLeft();
+        // player->movePlayerLeft();
     }
     if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D) {
         movingRight = true;
-       // player->movePlayerRight();
+        // player->movePlayerRight();
     }
     if (movingUp && movingRight){ movingNorthEast = true; }
     if (movingUp && movingLeft){ movingNorthWest = true; }
