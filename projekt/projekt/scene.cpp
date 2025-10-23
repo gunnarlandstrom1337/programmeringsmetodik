@@ -9,6 +9,7 @@
 Scene::Scene(QObject *parent) :QGraphicsScene(parent)
 {
 
+
     QTimer* playerMoving = new QTimer(this);
     connect(playerMoving, &QTimer::timeout,[=]()
             {
@@ -23,20 +24,21 @@ Scene::Scene(QObject *parent) :QGraphicsScene(parent)
     connect(addingEnemies, &QTimer::timeout,[=]()
             {
                 addEnemy();
-
-
-
             });
     addingEnemies->start(3000);
+
 
 }
 
 void Scene::addPlayer()
 {
     player = new Player(QPixmap(":/Images/faceDown1.png"));
-    player->setPos(-25,-25);
+    player->setPos(0,0);
     player->setScale(1);
     addItem(player);
+    QGraphicsRectItem* tempHitbox = addRect(player->getXCord()+15,player->getYCord()+10,20,30,QPen(Qt::red));
+    player->setPlayerHitbox(tempHitbox);
+
 }
 
 void Scene::addEnemy()
@@ -61,8 +63,19 @@ void Scene::addEnemy()
     std::cout << "X AXIS: " << spawnXAxis << "Y AXIS: " << spawnYAxis;
     tempEnemy->setPos(spawnXAxis,spawnYAxis);
     tempEnemy->setScale(3);
+    tempEnemy->setPlayer(player);
+
+
+
+
+    tempEnemy->setX(spawnXAxis);
+    tempEnemy->setY(spawnYAxis);
+
+
     addItem(tempEnemy);
     enemyVector.push_back(tempEnemy);
+
+
 }
 
 std::vector<Enemy*> &Scene::getEnemyVec()
@@ -74,17 +87,21 @@ void Scene::movingDirection()
 {
 
 
+
     if (movingUp && !(movingLeft || movingRight || movingDown || movingNorthWest || movingNorthEast || movingSouthEast || movingSouthWest)){
         player->movePlayerUp();
     }
     if (movingDown && !(movingUp || movingLeft || movingRight || movingSouthWest || movingSouthEast || movingNorthEast || movingNorthWest)){
         player->movePlayerDown();
+
     }
     if (movingLeft && !(movingRight || movingUp || movingDown || movingNorthWest || movingSouthWest || movingNorthEast || movingSouthEast)){
         player->movePlayerLeft();
+
     }
     if (movingRight && !(movingLeft || movingUp || movingDown || movingNorthEast || movingSouthEast || movingSouthWest || movingNorthWest)){
         player->movePlayerRight();
+
     }
     if (movingNorthWest && movingUp && movingLeft && !(movingSouthWest || movingNorthEast || movingSouthEast || movingDown || movingRight)){
         player->movePlayerNorthWest();
@@ -102,6 +119,8 @@ void Scene::movingDirection()
         player->setPlayerRunning(false);
     }
 }
+
+
 
 void Scene::keyPressEvent(QKeyEvent *event)
 {

@@ -25,6 +25,7 @@ private:
 
     std::vector<Enemy*> enemyVector;
 
+    // Player movement
     void movingDirection();
     bool movingUp = false;
     bool movingDown = false;
@@ -34,9 +35,6 @@ private:
     bool movingNorthWest = false;
     bool movingSouthEast = false;
     bool movingSouthWest = false;
-
-
-
 
     // QGraphicsScene interface
 protected:

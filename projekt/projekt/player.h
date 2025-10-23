@@ -35,12 +35,17 @@ public:
     void moveSouthEast();
 
     // Setters, Getters
+
     void setPlayerDirection(wchar_t input);
     void setPlayerRunning(bool input);
     void setXCord(double x);
     void setYCord(double y);
     int getXCord();
     int getYCord();
+
+    // Hitbox
+    void setPlayerHitbox(QGraphicsRectItem* hitbox);
+    std::vector<int> getPlayerHitbox();
 
     // Animations
 
@@ -69,7 +74,7 @@ private:
 
 
 
-
+    std::vector<int> hitboxVec;
     QTimer *movementTimer;
     //QMap<int, bool> keysPressed;
     void updatePlayerPixmap();
@@ -78,6 +83,14 @@ private:
     int updatePic = 0;
     double playerXCord = 0;
     double playerYCord = 0;
+
+    QGraphicsRectItem* playerHitbox;
+
+    // x = 20 width, y = 30 height
+    //int hitbox_x = 0;
+    //int hitbox_x1 = 0;
+    //int hitbox_y = 0;
+    //int hitbox_y1 = 0;
 
 };
 

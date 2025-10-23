@@ -26,8 +26,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
 
     // Gridline
-    //sceneMap->addLine(-400,0,400,0,QPen(Qt::red));
-    //sceneMap->addLine(0,-400,0,400,QPen(Qt::red));
+    sceneMap->addLine(-400,0,400,0,QPen(Qt::red));
+    sceneMap->addLine(0,-400,0,400,QPen(Qt::red));
 
     ui->graphicsView->setScene(sceneMap);
     //sceneMap->addItem(camera);

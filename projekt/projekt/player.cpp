@@ -1,7 +1,8 @@
 #include "player.h"
 #include <QTimer>
+#include <QPainter>
 
-Player::Player(QPixmap pixmap) : playerDirection("S"), playerRunning(false)
+Player::Player(QPixmap pixmap) : hitboxVec(4), playerDirection("S"), playerRunning(false)
 {
     setPixmap(pixmap);
 
@@ -17,6 +18,7 @@ Player::Player(QPixmap pixmap) : playerDirection("S"), playerRunning(false)
                 updatePlayerPixmap();
             });
     playerGraphicTimer->start(80);
+
 }
 
 void Player::movePlayer()
@@ -114,6 +116,7 @@ void Player::moveUp()
     if (getYCord() > -410){
         moveBy(0,-1);
         setYCord(-1);
+        playerHitbox->moveBy(0,-1);
         updatePlayerPixmap();
     }
 }
@@ -123,6 +126,7 @@ void Player::moveDown()
     if (getYCord() < 435){
         moveBy(0,1);
         setYCord(1);
+        playerHitbox->moveBy(0,1);
         updatePlayerPixmap();
     }
 }
@@ -132,6 +136,7 @@ void Player::moveLeft()
     if(getXCord() > -945){
         moveBy(-1,0);
         setXCord(-1);
+        playerHitbox->moveBy(-1,0);
         updatePlayerPixmap();
     }
 }
@@ -141,6 +146,7 @@ void Player::moveRight()
     if(getXCord() < 945){
         moveBy(1,0);
         setXCord(1);
+        playerHitbox->moveBy(1,0);
         updatePlayerPixmap();
     }
 }
@@ -151,6 +157,7 @@ void Player::moveNorthWest()
         moveBy(-0.8,-0.8);
         setXCord(-0.8);
         setYCord(-0.8);
+        playerHitbox->moveBy(-0.8,-0.8);
         updatePlayerPixmap();
     }
 }
@@ -161,6 +168,7 @@ void Player::moveNorthEast()
         moveBy(0.8,-0.8);
         setXCord(0.8);
         setYCord(-0.8);
+        playerHitbox->moveBy(0.8,-0.8);
         updatePlayerPixmap();
     }
 }
@@ -171,6 +179,7 @@ void Player::moveSouthWest()
         moveBy(-0.8,0.8);
         setXCord(-0.8);
         setYCord(0.8);
+        playerHitbox->moveBy(-0.8,0.8);
         updatePlayerPixmap();
     }
 }
@@ -181,6 +190,7 @@ void Player::moveSouthEast()
         moveBy(0.8,0.8);
         setXCord(0.8);
         setYCord(0.8);
+        playerHitbox->moveBy(0.8,0.8);
         updatePlayerPixmap();
     }
 
@@ -215,6 +225,16 @@ int Player::getXCord()
 int Player::getYCord()
 {
     return playerYCord;
+}
+
+void Player::setPlayerHitbox(QGraphicsRectItem* hitbox)
+{
+    playerHitbox = hitbox;
+}
+
+std::vector<int> Player::getPlayerHitbox()
+{
+    return hitboxVec;
 }
 
 // Changing charanimations
