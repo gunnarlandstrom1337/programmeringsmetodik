@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1901</width>
-    <height>752</height>
+    <width>1294</width>
+    <height>643</height>
    </rect>
   </property>
   <property name="cursor">
@@ -23,18 +23,11 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QGraphicsView" name="graphicsView">
-      <property name="cursor" stdset="0">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="startGame">
-      <property name="text">
-       <string>PushButton</string>
+      <property name="minimumSize">
+       <size>
+        <width>1924</width>
+        <height>1080</height>
+       </size>
       </property>
      </widget>
     </item>

@@ -22,11 +22,22 @@ public:
     void setY(double value);
     void setPlayer(Player* player);
 
+    void randomizePushback();
+    void playerHit(double value);
+    void pushEnemyOut(double xvalue, double yvalue);
+    void spawnLeft();
+
     void enemyChasePlayer();
+
+    bool enemyCollision();
+    bool playerCollision();
 
     ~Enemy() = default;
 
 signals:
+
+    void playerCollided();
+    void enemyCollided();
 
 public slots:
 
@@ -38,9 +49,11 @@ private:
     bool isWalkingLeft;
     bool isDead;
 
+    bool enemyCollidedPlayer;
+
     // Cordinate
-    double x;
-    double y;
+    double x = 0;
+    double y = 0;
 
     unsigned int health;
 

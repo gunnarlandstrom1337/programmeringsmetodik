@@ -84,5 +84,11 @@
         <file>Images/enemyWalkLeft4.png</file>
         <file>Images/enemyWalkLeft5.png</file>
         <file>Images/enemyWalkLeft6.png</file>
+        <file>Images/dead.png</file>
+        <file>Images/Blood_Blur_2.png</file>
+        <file>Images/Blood_Drops.png</file>
+        <file>Images/Effect_8.png</file>
+        <file>Images/Deathscreen.png</file>
+        <file>Images/Blood_Blur_1.png</file>
     </qresource>
 </RCC>

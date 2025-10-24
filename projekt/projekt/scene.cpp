@@ -2,8 +2,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <cstdlib>
-#include <time.h>
-#include <iostream>
+#include <QDebug>
 
 
 Scene::Scene(QObject *parent) :QGraphicsScene(parent)
@@ -13,22 +12,69 @@ Scene::Scene(QObject *parent) :QGraphicsScene(parent)
     QTimer* playerMoving = new QTimer(this);
     connect(playerMoving, &QTimer::timeout,[=]()
             {
-                movingDirection();
+                if (player->isAlive()){
 
-
-
+                    movingDirection();
+                }
+                else {
+                    movingDirection();
+                    playerMoving->stop();
+                }
             });
     playerMoving->start(5);
 
     QTimer* addingEnemies = new QTimer(this);
     connect(addingEnemies, &QTimer::timeout,[=]()
             {
+                if (!player->isAlive()){
+                    addingEnemies->stop();
+                }
                 addEnemy();
+
             });
-    addingEnemies->start(3000);
+
+    addingEnemies->start(400);
 
 
 }
+
+void Scene::dmgTaken()
+{
+    QGraphicsPixmapItem* dmgTaken = new QGraphicsPixmapItem(QPixmap(":/Images/Blood_Blur_1.png"));
+
+    dmgTaken->setPos(QPointF(0,0) - QPointF(dmgTaken->boundingRect().width()/2,dmgTaken->boundingRect().height()/2+6));
+    dmgTaken->setScale(1.01);
+
+    QTimer* dmgVisual = new QTimer(this);
+    if (damageTaken && player->isAlive()){
+
+        connect(dmgVisual, &QTimer::timeout,[=]()
+                {
+
+                    delete dmgTaken;
+                    damageTaken = false;
+                    dmgVisual->stop();
+                });
+
+        dmgVisual->start(3000);
+        addItem(dmgTaken);
+    }
+}
+
+void Scene::playerDied()
+{
+    QGraphicsPixmapItem* deadVisual= new QGraphicsPixmapItem(QPixmap(":/Images/Deathscreen.png"));
+    deadVisual->setPos(QPointF(0,0) - QPointF(deadVisual->boundingRect().width()/2,deadVisual->boundingRect().height()/2+6));
+    deadVisual->setScale(1.01);
+    addItem(deadVisual);
+
+
+    for(size_t i = 0; i != enemyVector.size()/2; i++){
+        delete enemyVector[i];
+    }
+    dead = true;
+}
+
 
 void Scene::addPlayer()
 {
@@ -36,19 +82,26 @@ void Scene::addPlayer()
     player->setPos(0,0);
     player->setScale(1);
     addItem(player);
-    QGraphicsRectItem* tempHitbox = addRect(player->getXCord()+15,player->getYCord()+10,20,30,QPen(Qt::red));
-    player->setPlayerHitbox(tempHitbox);
-
 }
 
 void Scene::addEnemy()
 {
-    std::srand(time(NULL));
-    Enemy* tempEnemy;
-    tempEnemy = new Enemy();
+
+
+
+    Enemy* tempEnemy = new Enemy();
+
+
+    connect(tempEnemy,&Enemy::playerCollided,[=](){
+
+        qDebug() << "DMGTAKEN Called\n";
+        damageTaken = true;
+        dmgTaken();
+    });
+
+
 
     // Needed for x to get randomized for some reason
-    int garbagerand = std::rand();
 
     int spawnXAxis = 0;
     int spawnYAxis = 0;
@@ -60,23 +113,22 @@ void Scene::addEnemy()
         spawnXAxis = std::rand() % 1890;
         spawnXAxis += -945;
     }
-    std::cout << "X AXIS: " << spawnXAxis << "Y AXIS: " << spawnYAxis;
     tempEnemy->setPos(spawnXAxis,spawnYAxis);
-    tempEnemy->setScale(3);
+    tempEnemy->setScale(2.2);
     tempEnemy->setPlayer(player);
-
-
-
 
     tempEnemy->setX(spawnXAxis);
     tempEnemy->setY(spawnYAxis);
 
-
+    if(tempEnemy->getX() > player->getXCord()){
+        tempEnemy->spawnLeft();
+    }
     addItem(tempEnemy);
     enemyVector.push_back(tempEnemy);
 
 
 }
+
 
 std::vector<Enemy*> &Scene::getEnemyVec()
 {
@@ -86,7 +138,9 @@ std::vector<Enemy*> &Scene::getEnemyVec()
 void Scene::movingDirection()
 {
 
-
+    if (!player->isAlive()){
+        playerDied();
+    }
 
     if (movingUp && !(movingLeft || movingRight || movingDown || movingNorthWest || movingNorthEast || movingSouthEast || movingSouthWest)){
         player->movePlayerUp();
@@ -124,28 +178,32 @@ void Scene::movingDirection()
 
 void Scene::keyPressEvent(QKeyEvent *event)
 {
+    if (player->isAlive()){
 
-    // North,South,Easter, West
-    if (event->key() == Qt::Key_Up || event->key() == Qt::Key_W) {
-        movingUp = true;
-        //player->movePlayerUp();
+
+
+        // North,South,Easter, West
+        if (event->key() == Qt::Key_Up || event->key() == Qt::Key_W) {
+            movingUp = true;
+            //player->movePlayerUp();
+        }
+        if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S) {
+            movingDown = true;
+            //player->movePlayerDown();
+        }
+        if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A) {
+            movingLeft = true;
+            // player->movePlayerLeft();
+        }
+        if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D) {
+            movingRight = true;
+            // player->movePlayerRight();
+        }
+        if (movingUp && movingRight){ movingNorthEast = true; }
+        if (movingUp && movingLeft){ movingNorthWest = true; }
+        if (movingDown && movingLeft){ movingSouthWest = true; }
+        if (movingDown && movingRight){ movingSouthEast = true; }
     }
-    if (event->key() == Qt::Key_Down || event->key() == Qt::Key_S) {
-        movingDown = true;
-        //player->movePlayerDown();
-    }
-    if (event->key() == Qt::Key_Left || event->key() == Qt::Key_A) {
-        movingLeft = true;
-        // player->movePlayerLeft();
-    }
-    if (event->key() == Qt::Key_Right || event->key() == Qt::Key_D) {
-        movingRight = true;
-        // player->movePlayerRight();
-    }
-    if (movingUp && movingRight){ movingNorthEast = true; }
-    if (movingUp && movingLeft){ movingNorthWest = true; }
-    if (movingDown && movingLeft){ movingSouthWest = true; }
-    if (movingDown && movingRight){ movingSouthEast = true; }
 }
 
 

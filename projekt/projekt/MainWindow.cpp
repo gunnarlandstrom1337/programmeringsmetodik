@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     //Kartan
     sceneMap = new Scene(this);
-    sceneMap->setSceneRect(-960,-544,1920,1088);
+    sceneMap->setSceneRect(-960,-544,1920,1070);
     QGraphicsPixmapItem* mapItem = new QGraphicsPixmapItem(QPixmap(":/Images/map1.png"));
     sceneMap->addItem(mapItem);
     mapItem->setPos(QPointF(0,0) - QPointF(mapItem->boundingRect().width()/2,mapItem->boundingRect().height()/2));
@@ -26,8 +26,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
 
     // Gridline
-    sceneMap->addLine(-400,0,400,0,QPen(Qt::red));
-    sceneMap->addLine(0,-400,0,400,QPen(Qt::red));
+    //sceneMap->addLine(-400,0,400,0,QPen(Qt::red));
+    //sceneMap->addLine(0,-400,0,400,QPen(Qt::red));
 
     ui->graphicsView->setScene(sceneMap);
     //sceneMap->addItem(camera);

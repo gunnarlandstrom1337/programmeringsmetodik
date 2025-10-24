@@ -14,6 +14,8 @@ public:
     explicit Scene(QObject *parent = nullptr);
     void addPlayer();
     void addEnemy();
+    void dmgTaken();
+    void playerDied();
     std::vector<Enemy*>& getEnemyVec();
 
 signals:
@@ -35,6 +37,8 @@ private:
     bool movingNorthWest = false;
     bool movingSouthEast = false;
     bool movingSouthWest = false;
+    bool damageTaken = false;
+    bool dead = false;
 
     // QGraphicsScene interface
 protected:

@@ -28,7 +28,6 @@ public:
     void movePlayerSouthWest();
     void movePlayerSouthEast();
 
-    // Unused
     void moveNorthWest();
     void moveNorthEast();
     void moveSouthWest();
@@ -42,6 +41,9 @@ public:
     void setYCord(double y);
     int getXCord();
     int getYCord();
+
+    void hasDied();
+    bool isAlive();
 
     // Hitbox
     void setPlayerHitbox(QGraphicsRectItem* hitbox);
@@ -62,6 +64,7 @@ public:
     QPixmap runRight();
 
 
+    void setPlayerHealth(double value);
 
 signals:
 
@@ -83,6 +86,9 @@ private:
     int updatePic = 0;
     double playerXCord = 0;
     double playerYCord = 0;
+
+    double playerHealth;
+    bool alive;
 
     QGraphicsRectItem* playerHitbox;
 

@@ -2,7 +2,7 @@
 #include <QTimer>
 #include <QPainter>
 
-Player::Player(QPixmap pixmap) : hitboxVec(4), playerDirection("S"), playerRunning(false)
+Player::Player(QPixmap pixmap) : hitboxVec(4), playerDirection("S"), playerRunning(false),playerHealth(60), alive(true)
 {
     setPixmap(pixmap);
 
@@ -15,10 +15,12 @@ Player::Player(QPixmap pixmap) : hitboxVec(4), playerDirection("S"), playerRunni
                 else {
                     updatePic = 1;
                 }
+                if (playerHealth <= 0){
+                    alive = false;
+                }
                 updatePlayerPixmap();
             });
     playerGraphicTimer->start(80);
-
 }
 
 void Player::movePlayer()
@@ -113,84 +115,76 @@ void Player::movePlayerSouthEast()
 
 void Player::moveUp()
 {
-    if (getYCord() > -410){
+    if (getYCord() > -440){
         moveBy(0,-1);
         setYCord(-1);
-        playerHitbox->moveBy(0,-1);
         updatePlayerPixmap();
     }
 }
 
 void Player::moveDown()
 {
-    if (getYCord() < 435){
+    if (getYCord() < 410){
         moveBy(0,1);
         setYCord(1);
-        playerHitbox->moveBy(0,1);
         updatePlayerPixmap();
     }
 }
 
 void Player::moveLeft()
 {
-    if(getXCord() > -945){
+    if(getXCord() > -975){
         moveBy(-1,0);
         setXCord(-1);
-        playerHitbox->moveBy(-1,0);
         updatePlayerPixmap();
     }
 }
 
 void Player::moveRight()
 {
-    if(getXCord() < 945){
+    if(getXCord() < 925){
         moveBy(1,0);
         setXCord(1);
-        playerHitbox->moveBy(1,0);
         updatePlayerPixmap();
     }
 }
 
 void Player::moveNorthWest()
 {
-    if(getXCord() > -945 && getYCord() > -410){
+    if(getXCord() > -975 && getYCord() > -440){
         moveBy(-0.8,-0.8);
         setXCord(-0.8);
         setYCord(-0.8);
-        playerHitbox->moveBy(-0.8,-0.8);
         updatePlayerPixmap();
     }
 }
 
 void Player::moveNorthEast()
 {
-    if(getXCord() < 945 && getYCord() > -410){
+    if(getXCord() < 925 && getYCord() > -440){
         moveBy(0.8,-0.8);
         setXCord(0.8);
         setYCord(-0.8);
-        playerHitbox->moveBy(0.8,-0.8);
         updatePlayerPixmap();
     }
 }
 
 void Player::moveSouthWest()
 {
-    if(getXCord() > -945 && getYCord() < 435){
+    if(getXCord() > -975 && getYCord() < 410){
         moveBy(-0.8,0.8);
         setXCord(-0.8);
         setYCord(0.8);
-        playerHitbox->moveBy(-0.8,0.8);
         updatePlayerPixmap();
     }
 }
 
 void Player::moveSouthEast()
 {
-    if(getXCord() < 945 && getYCord() < 435){
+    if(getXCord() < 925 && getYCord() < 410){
         moveBy(0.8,0.8);
         setXCord(0.8);
         setYCord(0.8);
-        playerHitbox->moveBy(0.8,0.8);
         updatePlayerPixmap();
     }
 
@@ -227,6 +221,16 @@ int Player::getYCord()
     return playerYCord;
 }
 
+void Player::hasDied()
+{
+    alive = false;
+}
+
+bool Player::isAlive()
+{
+    return alive;
+}
+
 void Player::setPlayerHitbox(QGraphicsRectItem* hitbox)
 {
     playerHitbox = hitbox;
@@ -240,6 +244,10 @@ std::vector<int> Player::getPlayerHitbox()
 // Changing charanimations
 void Player::updatePlayerPixmap()
 {
+    if(!alive){
+        setPixmap(QPixmap(":/Images/dead.png"));
+        return;
+    }
 
     if (!playerRunning){
 
@@ -565,6 +573,11 @@ QPixmap Player::runRight(){
     else {
         return QPixmap(":/Images/runRight1.png");
     }
+}
+
+void Player::setPlayerHealth(double value)
+{
+    playerHealth -= value;
 }
 
 
